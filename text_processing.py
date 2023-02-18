@@ -252,12 +252,13 @@ def get_text(url, encoding='utf-8', to_lower=True):
 def stopwords_stem(text):
     '''Функция очистки текста от стоп-слов и стемминг'''
     url_stopwords_ru = "https://raw.githubusercontent.com/stopwords-iso/stopwords-ru/master/stopwords-ru.txt"
-    stopwords_ru = get_text('url_stopwords_ru').splitlines()
+    stopwords_ru = get_text(url_stopwords_ru).splitlines()
     text = " ".join([word for word in text.split() if word not in (stopwords_ru)])
     stemmer = SnowballStemmer("russian")
     text_processed = [stemmer.stem(word) for word in text.split()]
     print(text_processed)
     return text_processed
+
 
 def navigation(words, len_text):
     '''Функция, отвечающая за навигацию на сайте, где
@@ -280,7 +281,7 @@ def navigation(words, len_text):
             mas_answer.append([key, url_to_section[key]])
     with open('answer.json', 'w') as json_file:
         json.dump(dict_answer, json_file, ensure_ascii=False)
-    #print(mas_answer)
+    print(mas_answer)
     return mas_answer
 
 def detect_field(words, len_text):
