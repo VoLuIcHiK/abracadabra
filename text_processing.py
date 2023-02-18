@@ -251,8 +251,8 @@ def get_text(url, encoding='utf-8', to_lower=True):
 
 def stopwords_stem(text):
     '''Функция очистки текста от стоп-слов и стемминг'''
-    #url_stopwords_ru = "https://raw.githubusercontent.com/stopwords-iso/stopwords-ru/master/stopwords-ru.txt"
-    stopwords_ru = get_text('stopwords.txt').splitlines()
+    url_stopwords_ru = "https://raw.githubusercontent.com/stopwords-iso/stopwords-ru/master/stopwords-ru.txt"
+    stopwords_ru = get_text('url_stopwords_ru').splitlines()
     text = " ".join([word for word in text.split() if word not in (stopwords_ru)])
     stemmer = SnowballStemmer("russian")
     text_processed = [stemmer.stem(word) for word in text.split()]
@@ -337,5 +337,3 @@ def web_bot(text):
     show_field_info(detect_field(words, len(text)))
     mas = []
     return mas'''
-
-web_bot('Я хочу добавить проект')
